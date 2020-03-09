@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
-  before_action :authentificate_user!
+  before_action :authenticate_user!
   
   def show
 
@@ -9,7 +9,7 @@ class CartsController < ApplicationController
   private
 
   def set_cart
-    @cart = Cart.find(params[:id]) 
+    @cart = Cart.find_by(user_id: params[:id]) 
   end
 
   def cart_params
