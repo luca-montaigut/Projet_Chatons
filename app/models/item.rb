@@ -6,8 +6,12 @@ class Item < ApplicationRecord
     length: { maximum: 1024 }
   validates :price,
     numericality: { greater_than: 0 }
-  validates :image_url,
+
+  has_one_attached :picture
+
+  validates :picture, 
     presence: true
+
   
   has_many :join_cart_items
   has_many :carts, through: :join_cart_items
