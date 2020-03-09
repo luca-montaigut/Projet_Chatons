@@ -126,3 +126,83 @@ FOREIGN KEY ("items_id")
   ↳ bin/rails:9
   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6000568973571881415)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateCarts (20200309105610)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (289.7ms)[0m  [1m[35mCREATE TABLE "carts" ("id" bigserial primary key, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_ea59a35211"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20200309105610_create_carts.rb:3
+  [1m[35m (48.6ms)[0m  [1m[35mCREATE  INDEX  "index_carts_on_user_id" ON "carts"  ("user_id")[0m
+  ↳ db/migrate/20200309105610_create_carts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200309105610"]]
+  ↳ bin/rails:9
+  [1m[35m (19.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateJoinCartItems (20200309112626)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (37.2ms)[0m  [1m[35mCREATE TABLE "join_cart_items" ("id" bigserial primary key, "carts_id" bigint, "items_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_e843a44368"
+FOREIGN KEY ("carts_id")
+  REFERENCES "carts" ("id")
+, CONSTRAINT "fk_rails_accf414447"
+FOREIGN KEY ("items_id")
+  REFERENCES "items" ("id")
+)[0m
+  ↳ db/migrate/20200309112626_create_join_cart_items.rb:3
+  [1m[35m (37.6ms)[0m  [1m[35mCREATE  INDEX  "index_join_cart_items_on_carts_id" ON "join_cart_items"  ("carts_id")[0m
+  ↳ db/migrate/20200309112626_create_join_cart_items.rb:3
+  [1m[35m (40.4ms)[0m  [1m[35mCREATE  INDEX  "index_join_cart_items_on_items_id" ON "join_cart_items"  ("items_id")[0m
+  ↳ db/migrate/20200309112626_create_join_cart_items.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200309112626"]]
+  ↳ bin/rails:9
+  [1m[35m (14.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateOrders (20200309113514)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (40.2ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "users_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_d3f93ab604"
+FOREIGN KEY ("users_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20200309113514_create_orders.rb:3
+  [1m[35m (39.9ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_users_id" ON "orders"  ("users_id")[0m
+  ↳ db/migrate/20200309113514_create_orders.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200309113514"]]
+  ↳ bin/rails:9
+  [1m[35m (13.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateJoinOrderItems (20200309113729)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (43.5ms)[0m  [1m[35mCREATE TABLE "join_order_items" ("id" bigserial primary key, "orders_id" bigint, "items_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_f073de6caa"
+FOREIGN KEY ("orders_id")
+  REFERENCES "orders" ("id")
+, CONSTRAINT "fk_rails_4b5727968a"
+FOREIGN KEY ("items_id")
+  REFERENCES "items" ("id")
+)[0m
+  ↳ db/migrate/20200309113729_create_join_order_items.rb:3
+  [1m[35m (39.2ms)[0m  [1m[35mCREATE  INDEX  "index_join_order_items_on_orders_id" ON "join_order_items"  ("orders_id")[0m
+  ↳ db/migrate/20200309113729_create_join_order_items.rb:3
+  [1m[35m (31.3ms)[0m  [1m[35mCREATE  INDEX  "index_join_order_items_on_items_id" ON "join_order_items"  ("items_id")[0m
+  ↳ db/migrate/20200309113729_create_join_order_items.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200309113729"]]
+  ↳ bin/rails:9
+  [1m[35m (14.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (66.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(6000568973571881415)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
