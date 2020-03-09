@@ -70,3 +70,4 @@ end
 gem 'table_print'
 gem 'faker'
 gem 'dotenv-rails' 
+gem "aws-sdk-s3", require: false
