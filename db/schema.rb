@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_102105) do
+ActiveRecord::Schema.define(version: 2020_03_09_113729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "title"
@@ -22,6 +29,31 @@ ActiveRecord::Schema.define(version: 2020_03_09_102105) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "join_cart_items", force: :cascade do |t|
+    t.bigint "carts_id"
+    t.bigint "items_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carts_id"], name: "index_join_cart_items_on_carts_id"
+    t.index ["items_id"], name: "index_join_cart_items_on_items_id"
+  end
+
+  create_table "join_order_items", force: :cascade do |t|
+    t.bigint "orders_id"
+    t.bigint "items_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["items_id"], name: "index_join_order_items_on_items_id"
+    t.index ["orders_id"], name: "index_join_order_items_on_orders_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "users_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_orders_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,4 +68,10 @@ ActiveRecord::Schema.define(version: 2020_03_09_102105) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "carts", "users"
+  add_foreign_key "join_cart_items", "carts", column: "carts_id"
+  add_foreign_key "join_cart_items", "items", column: "items_id"
+  add_foreign_key "join_order_items", "items", column: "items_id"
+  add_foreign_key "join_order_items", "orders", column: "orders_id"
+  add_foreign_key "orders", "users", column: "users_id"
 end

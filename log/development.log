@@ -33,6 +33,7 @@ Migrating to CreateItems (20200309083147)
   ↳ bin/rails:9
   [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
   [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+<<<<<<< HEAD
 Started GET "/" for 127.0.0.1 at 2020-03-09 11:42:39 +0100
 
 PG::ConnectionBad - FATAL:  la base de données « chatons_development » n'existe pas
@@ -1009,3 +1010,114 @@ To customize the errors styles please run `rails g devise:views` and modify the
 Completed 200 OK in 91ms (Views: 90.0ms | ActiveRecord: 0.0ms)
 
 
+=======
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6000568973571881415)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to DeviseCreateUsers (20200309102105)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200309102105_devise_create_users.rb:5
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  ↳ db/migrate/20200309102105_devise_create_users.rb:39
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  ↳ db/migrate/20200309102105_devise_create_users.rb:40
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200309102105"]]
+  ↳ bin/rails:9
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateCarts (20200309105610)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "carts" ("id" bigserial primary key, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_ea59a35211"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20200309105610_create_carts.rb:3
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE  INDEX  "index_carts_on_user_id" ON "carts"  ("user_id")[0m
+  ↳ db/migrate/20200309105610_create_carts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200309105610"]]
+  ↳ bin/rails:9
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateJoinCartItems (20200309112626)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "join_cart_items" ("id" bigserial primary key, "carts_id" bigint, "items_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_e843a44368"
+FOREIGN KEY ("carts_id")
+  REFERENCES "carts" ("id")
+, CONSTRAINT "fk_rails_accf414447"
+FOREIGN KEY ("items_id")
+  REFERENCES "items" ("id")
+)[0m
+  ↳ db/migrate/20200309112626_create_join_cart_items.rb:3
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE  INDEX  "index_join_cart_items_on_carts_id" ON "join_cart_items"  ("carts_id")[0m
+  ↳ db/migrate/20200309112626_create_join_cart_items.rb:3
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX  "index_join_cart_items_on_items_id" ON "join_cart_items"  ("items_id")[0m
+  ↳ db/migrate/20200309112626_create_join_cart_items.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200309112626"]]
+  ↳ bin/rails:9
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateOrders (20200309113514)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "users_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_d3f93ab604"
+FOREIGN KEY ("users_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20200309113514_create_orders.rb:3
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE  INDEX  "index_orders_on_users_id" ON "orders"  ("users_id")[0m
+  ↳ db/migrate/20200309113514_create_orders.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200309113514"]]
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateJoinOrderItems (20200309113729)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "join_order_items" ("id" bigserial primary key, "orders_id" bigint, "items_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_f073de6caa"
+FOREIGN KEY ("orders_id")
+  REFERENCES "orders" ("id")
+, CONSTRAINT "fk_rails_4b5727968a"
+FOREIGN KEY ("items_id")
+  REFERENCES "items" ("id")
+)[0m
+  ↳ db/migrate/20200309113729_create_join_order_items.rb:3
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX  "index_join_order_items_on_orders_id" ON "join_order_items"  ("orders_id")[0m
+  ↳ db/migrate/20200309113729_create_join_order_items.rb:3
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX  "index_join_order_items_on_items_id" ON "join_order_items"  ("items_id")[0m
+  ↳ db/migrate/20200309113729_create_join_order_items.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200309113729"]]
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(6000568973571881415)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+>>>>>>> 6616bce88b7afca131c7a3ab3d21cd6cd4e72a38
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6000568973571881415)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(6000568973571881415)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
