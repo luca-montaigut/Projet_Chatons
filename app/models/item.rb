@@ -8,4 +8,10 @@ class Item < ApplicationRecord
     numericality: { greater_than: 0 }
   validates :image_url,
     presence: true
+  
+  has_many :join_cart_items
+  has_many :carts, through: :join_cart_items
+
+  has_many :join_order_items
+  has_many :orders, through: :join_order_items
 end
