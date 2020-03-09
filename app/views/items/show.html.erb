@@ -1,0 +1,26 @@
+    <br>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Home</li>
+  </ol>
+</nav>
+    <div class="card">
+        <div class="row no-gutters">
+            <div class="col-auto">
+                                <%= image_tag "https://placekitten.com/400/400", class:"img-flui"%>
+
+            </div>
+            <div class="col">
+                <div class="card-block px-2">
+                    <h4 class="card-title"><%= @item.title%></h4>
+                    <h5 class="card-title"><strong><%= @item.price%>€</strong></h5>
+                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <a href="#" class="btn btn-success"><i class="fas fa-shopping-cart"></i> Ajouter au panier</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer w-100 text-muted">
+            Footer stating cats are CUTE little animals
+        </div>
+    </div>
