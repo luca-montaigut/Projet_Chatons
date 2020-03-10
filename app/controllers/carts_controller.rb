@@ -3,8 +3,12 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   
   def show
+<<<<<<< HEAD
     puts @cart
     @total = @cart.total
+=======
+
+>>>>>>> 2a83efe4457fa61f7880491e60fa3be32f55653f
   end
 
   def update
@@ -22,7 +26,6 @@ class CartsController < ApplicationController
 
   def set_cart
     @cart = current_user.cart
-    @in_cart = @cart.items
   end
 
   def cart_params
