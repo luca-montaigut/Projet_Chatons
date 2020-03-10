@@ -3,8 +3,7 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   
   def show
-    puts @cart
-    @total = @in_cart.pluck(:price).sum
+
   end
 
   def update
@@ -22,7 +21,6 @@ class CartsController < ApplicationController
 
   def set_cart
     @cart = current_user.cart
-    @in_cart = @cart.items
   end
 
   def cart_params
