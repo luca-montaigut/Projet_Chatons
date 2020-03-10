@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: "items#index"
   resources :items
   resources :carts, only: [:show]
+  resources :users
 end
