@@ -12,7 +12,7 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require jquery-3.4.1.slim.min
+//= require jquery-3.2.1.slim.min
 //= require bootstrap.min
 //= require popper.min
 //= require_tree .
