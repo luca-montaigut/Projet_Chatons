@@ -53,28 +53,28 @@ ActiveRecord::Schema.define(version: 2020_03_09_165943) do
   end
 
   create_table "join_cart_items", force: :cascade do |t|
-    t.bigint "carts_id"
-    t.bigint "items_id"
+    t.bigint "cart_id"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["carts_id"], name: "index_join_cart_items_on_carts_id"
-    t.index ["items_id"], name: "index_join_cart_items_on_items_id"
+    t.index ["cart_id"], name: "index_join_cart_items_on_cart_id"
+    t.index ["item_id"], name: "index_join_cart_items_on_item_id"
   end
 
   create_table "join_order_items", force: :cascade do |t|
-    t.bigint "orders_id"
-    t.bigint "items_id"
+    t.bigint "order_id"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["items_id"], name: "index_join_order_items_on_items_id"
-    t.index ["orders_id"], name: "index_join_order_items_on_orders_id"
+    t.index ["item_id"], name: "index_join_order_items_on_item_id"
+    t.index ["order_id"], name: "index_join_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "users_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_orders_on_users_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,9 +96,9 @@ ActiveRecord::Schema.define(version: 2020_03_09_165943) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carts", "users"
-  add_foreign_key "join_cart_items", "carts", column: "carts_id"
-  add_foreign_key "join_cart_items", "items", column: "items_id"
-  add_foreign_key "join_order_items", "items", column: "items_id"
-  add_foreign_key "join_order_items", "orders", column: "orders_id"
-  add_foreign_key "orders", "users", column: "users_id"
+  add_foreign_key "join_cart_items", "carts"
+  add_foreign_key "join_cart_items", "items"
+  add_foreign_key "join_order_items", "items"
+  add_foreign_key "join_order_items", "orders"
+  add_foreign_key "orders", "users"
 end

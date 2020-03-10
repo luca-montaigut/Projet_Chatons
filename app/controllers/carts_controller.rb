@@ -3,17 +3,21 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   
   def show
+    @in_cart = JoinCartItem.all
+  end
 
+  def update
+    JoinCartItem.create(cart_id: @cart.id, item_id: Item.find(params[:id]).id)
   end
 
   private
 
   def set_cart
-    @cart = Cart.find_by(user_id: params[:id]) 
+    @cart = current_user.cart
   end
 
   def cart_params
-    params.require(:cart).permit(:user_id)
+    params.require(:cart).permit(:user_id, :id)
   end
 
 end

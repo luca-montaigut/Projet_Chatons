@@ -1,1 +1,8 @@
 <h1>Votre panier</h1>
+
+<%= @cart.id %>
+<%= @cart.user_id %>
+
+<% @in_cart.each do |item| %>
+  <%= item %>
+<% end %>

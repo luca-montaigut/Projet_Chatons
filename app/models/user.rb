@@ -5,11 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   after_create :user_cart
 
-  has_one :cart
+  has_one :cart, dependent: :destroy
 
   private
 
   def user_cart
-    Cart.create(user_id: self)    
+    Cart.create(user_id: self.id)    
   end
 end
