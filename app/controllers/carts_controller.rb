@@ -4,7 +4,7 @@ class CartsController < ApplicationController
   
   def show
     puts @cart
-    @total = @in_cart.pluck(:price).sum
+    @total = @cart.total
   end
 
   def update
