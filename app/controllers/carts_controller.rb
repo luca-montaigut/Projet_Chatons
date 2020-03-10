@@ -3,17 +3,26 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   
   def show
-    @in_cart = JoinCartItem.all
+    puts @cart
+    @total = @in_cart.pluck(:price).sum
   end
 
   def update
     JoinCartItem.create(cart_id: @cart.id, item_id: Item.find(params[:id]).id)
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    join = item.join_id(current_user)
+    puts join
+    JoinCartItem.destroy(join.ids)
+  end
+
   private
 
   def set_cart
     @cart = current_user.cart
+    @in_cart = @cart.items
   end
 
   def cart_params

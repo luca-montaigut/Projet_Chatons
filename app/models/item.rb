@@ -18,4 +18,8 @@ class Item < ApplicationRecord
 
   has_many :join_order_items
   has_many :orders, through: :join_order_items
+
+  def join_id(user)
+    self.join_cart_items.where(cart: user.cart.id)
+  end
 end
