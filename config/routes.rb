@@ -6,4 +6,10 @@ Rails.application.routes.draw do
   resources :carts, only: [:show, :update, :destroy]
   resources :users
   resources :charges
+
+  scope 'admin', module: 'admin', as: 'admin' do
+    resources :users
+    resources :orders
+    resources :items
+  end
 end
