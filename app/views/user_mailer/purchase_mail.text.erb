@@ -2,9 +2,8 @@ Bonjour <%= @order.user.first_name %> et merci pour vos achats !
 
 Voici un recapitulatif de vos achats.
 
-<% @user.items do |item| %>
+<% @order.items.each do |item| %>
 - <%= item.title %>
-- <%= item.buying_price %>
 
 <% end %>
 

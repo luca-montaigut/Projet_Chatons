@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
-  after_create :order_cart, :order_mail
+  after_create :order_cart
+  after_create :order_mail
 
   belongs_to :user
 
@@ -20,8 +21,8 @@ class Order < ApplicationRecord
   end
 
   def order_mail
-	UserMailer.purchase_mail(self).deliver_later
-	AdminMailer.order_mail(self).deliver_later
+	UserMailer.purchase_mail(self).deliver_now
+	AdminMailer.order_mail(self).deliver_now
   end
 
 end

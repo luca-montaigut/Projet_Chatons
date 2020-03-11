@@ -20,6 +20,7 @@
                                                                                 <tr>
                                                                                     <td align="center" class="esd-block-text">
                                                                                         <h2 style="color: #659c35;">Merci pour votre commande !</h2>
+																						<p>Voici un récapitulatif de la commande</p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -36,7 +37,8 @@
                                 </tr>
                             </tbody>
                         </table>
-						<% @user.items do |item| %>
+						<br/><br/>
+						<% @order.items.each do |item| %>
                         <table cellpadding="0" cellspacing="0" class="es-content" align="center">
                             <tbody>
                                 <tr>
@@ -53,7 +55,7 @@
                                                                         <table cellpadding="0" cellspacing="0" width="100%" style="background-position: left top;">
                                                                             <tbody>
                                                                                 <tr>
-                                                                                    <td align="center" class="esd-block-image" style="font-size:0"><a target="_blank" href="https://viewstripo.email/"><img class="adapt-img" src="<%= item.picture %>" alt style="display: block;" width="154"></a></td>
+                                                                                    <td align="center" class="esd-block-image" style="font-size:0"><%= image_tag item.picture, width: "154px;" %></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -75,16 +77,6 @@
                                                                                 <tr>
                                                                                     <td align="left" class="esd-block-text es-p5t">
                                                                                         <p><%= item.description %></p>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td align="left" class="esd-block-text es-p10t es-m-txt-l">
-                                                                                        <h3 style="color: #659c35; font-size: 19px;"><strong><span style="color:#000000;">Quantité:</span>&nbsp;<%= item.quantity %></strong></h3>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td align="left" class="esd-block-text es-p10t es-m-txt-l">
-                                                                                        <h3 style="color: #659c35; font-size: 19px;"><strong><span style="color:#000000;">Prix:</span>&nbsp;<%= item.buying_price %>€</strong></h3>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -125,7 +117,7 @@
                                                                                                     <td>
                                                                                                         <h4 style="color: #333333; line-height: 200%;">Total de la commande:</h4>
                                                                                                     </td>
-                                                                                                    <td style="color: #659c35;"><strong><%= order.total %></strong></td>
+                                                                                                    <td style="color: #659c35;"><strong><%= @order.total %>€</strong></td>
                                                                                                 </tr>
                                                                                             </tbody>
                                                                                         </table>
