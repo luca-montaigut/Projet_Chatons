@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "items#index"
   resources :items do 
     resources :rating, only: [:update]
+    resources :comments, only: [:create, :edit, :update, :destroy]
   end
   resources :carts, only: [:show, :update, :destroy]
   resources :users
