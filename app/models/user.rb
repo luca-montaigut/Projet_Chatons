@@ -9,6 +9,9 @@ class User < ApplicationRecord
   
   has_many :orders
 
+  has_many :ratings
+
+  
   private
 
   def user_cart

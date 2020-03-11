@@ -16,3 +16,6 @@
 //= require bootstrap.min
 //= require popper.min
 //= require_tree .
+//= require jquery3
+//= require jquery_ujs
+//= require_tree .

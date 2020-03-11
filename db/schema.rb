@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 2020_03_11_122122) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating"
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_ratings_on_item_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -102,6 +112,7 @@ ActiveRecord::Schema.define(version: 2020_03_11_122122) do
     t.string "description"
     t.string "adress"
     t.string "birthdate"
+    t.boolean "is_admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -114,4 +125,6 @@ ActiveRecord::Schema.define(version: 2020_03_11_122122) do
   add_foreign_key "join_order_items", "items"
   add_foreign_key "join_order_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "ratings", "items"
+  add_foreign_key "ratings", "users"
 end

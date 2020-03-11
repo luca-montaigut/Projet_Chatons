@@ -14,9 +14,6 @@ class ApplicationController < ActionController::Base
     else
       if session[:cart]
         @cart = Cart.find(session[:cart])
-        puts "#"*50
-        puts session[:cart]
-        puts "#"*50
       else
         @cart = Cart.create()
         session[:cart] = @cart.id
