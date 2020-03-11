@@ -1,12 +1,13 @@
-Bonjour <%= @user.first_name %> et merci pour vos achats !
+Bonjour <%= @order.user.first_name %> et merci pour vos achats !
 
 Voici un recapitulatif de vos achats.
 
-<% @user.cart.in_cart.each do |item| %>
+<% @user.items do |item| %>
 - <%= item.title %>
+- <%= item.buying_price %>
 
 <% end %>
 
-Vous avez payé un total de <%= @user.cart.total %>€
+Vous avez payé un total de <%= @order.total %>€
 
 A très vite sur Cat-Roulette !
