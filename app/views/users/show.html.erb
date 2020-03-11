@@ -28,5 +28,19 @@
         <%= link_to '« Retour Accueil', root_path, class:"btn btn-primary" %>
     <% end %>
     </div>
+<br>
+<h2> Historique de vos commandes </h2>
+
+    <% current_user.orders.each_with_index do |order, i| %>
+
+      <p> Commande du <%= order.created_at.strftime('%d/%m/%Y à %H:%M') %> d'un montant de <%= order.total %>€</p> 
+
+      <ul>
+      <% order.items.each do |item| %>
+        <li><%= item.title %></li> 
+      <% end %>
+      </ul>
+
+    <% end %>
 
 </main>

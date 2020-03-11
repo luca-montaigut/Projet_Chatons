@@ -28,7 +28,7 @@
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "Cart", new_user_session_path, class:"nav-link"%>
+              <%= link_to "Cart", cart_path(session[:cart]), class:"nav-link"%>
             </li>
           <% end %>
         </ul>
@@ -80,6 +80,15 @@
       <% end %>
     <% end %>
 <!-- End of Flash -->
+
+<!-- jumbotron -->
+    <% if current_page?(root_path) %>
+      <div class="jumbotron">
+        <h1 class="display-4">Cat-roulette</h1>
+        <p class="lead">Les chatte les plus douce de france</p>
+      </div>      
+    <% end %>
+<!-- End of Jumbotron -->
 
 <!-- Start of main-->
     <main role="main" class="flex-shrink-0">
