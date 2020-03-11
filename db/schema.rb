@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_165943) do
   end
 
   create_table "join_order_items", force: :cascade do |t|
-    t.decimal "price"
+    t.decimal "buying_price"
     t.integer "quantity"
     t.bigint "order_id"
     t.bigint "item_id"
