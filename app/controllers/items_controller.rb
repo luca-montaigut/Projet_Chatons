@@ -6,9 +6,12 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    find = Rating.find_by(user_id: current_user.id , item_id: params[:id])
+    
+    if current_user
+      find = Rating.find_by(user_id: current_user.id , item_id: params[:id])
+    end
   
-    if @rate == nil
+    if find == nil
       @rate = 0
     else
       @rate = find.rating
