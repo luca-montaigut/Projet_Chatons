@@ -16,7 +16,9 @@
             <h5 class="card-title"><strong><%= @item.price%>€</strong></h5>
             <%= render 'rating/show', rate: @rate%>
             <p class="card-text"><%= @item.description%></p>
-            <%= link_to "<i class='fas fa-shopping-cart'> </i>  Ajouter au panier".html_safe, cart_path, data:{ method: "PUT" }, class:"btn btn-success"%>
+            <div id="btn">
+                <%= render 'add_cart', rate: @rate%>
+            </div>
         </div>
     </div>
 </div>

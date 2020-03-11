@@ -5,7 +5,7 @@
   </div>
   <ul class="list-group list-group-flush border-right-0">
     <% @cart.in_cart.each do |item| %>
-      <li class="list-group-item">
+      <li class="list-group-item" id="<%= item.id%>">
         <div class="row">
             <div class="col-md-2">
               <%= image_tag item.picture, width: "150"%>
@@ -15,9 +15,13 @@
               <strong>
                 <%= item.price %>€
               </strong>
+              <br>
+              <strong>
+                Quantité: <%= item.join_cart_items.find_by(cart_id: current_user.cart.id).quantity%> X 
+              </strong>
             </div>
             <div class="col-md-1">
-              <%= link_to "<i class='fa fa-trash'></i>".html_safe, cart_path(item), method: "DELETE",class: "btn btn-danger" %>
+              <%= link_to "<i class='fa fa-trash'></i>".html_safe, cart_path(item), method: "DELETE",class: "btn btn-danger", remote: true %>
             </div>
         </div>
       </li>
@@ -33,7 +37,7 @@
               </div>
             <% end %>
             <label class="amount">
-              <h4>Total: <%= @cart.total%> €</h4>
+              <h4>Total: <%= @cart.total_value%> €</h4>
             </label>
           </article>
 
@@ -42,7 +46,7 @@
                   data-description="Payez votre commande"
                   data-email=<%= current_user.email %>
                   data-currency= 'eur',
-                  data-amount=<%= @cart.total * 100 %>
+                  data-amount=<%=  @cart.total_value * 100 %>
                   data-locale="auto"></script>
         <% end %>
   <!-- End of STRIPE -->        

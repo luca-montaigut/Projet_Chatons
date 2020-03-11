@@ -1,6 +1,5 @@
 class Cart < ApplicationRecord
 
-
   has_many :join_cart_items
   has_many :items, through: :join_cart_items
 
@@ -8,7 +7,12 @@ class Cart < ApplicationRecord
     self.items
   end
 
-  def total
-    self.items.pluck(:price).sum
+  def total_value
+    i = 0
+    self.items.each do |item|
+      i = i + item.join_cart_items.find_by(cart_id: self.id).total
+    end
+    return i
+
   end
 end

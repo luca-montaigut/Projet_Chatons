@@ -18,6 +18,5 @@ class ItemsController < ApplicationController
     else
       @rate = find.rating
     end
-
   end
 end
