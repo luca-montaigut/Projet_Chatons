@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_one :cart, dependent: :destroy
 
+  has_many :ratings
+
   private
 
   def user_cart
