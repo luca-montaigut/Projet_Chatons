@@ -4,7 +4,7 @@ class CartsController < ApplicationController
   end
 
   def update
-    JoinCartItem.create(cart_id: @cart.id, item_id: Item.find(params[:id]).id)
+    JoinCartItem.create(cart_id: @cart.id, item_id: Item.find(params[:id]).id, quantity: 1)
   end
 
   def destroy

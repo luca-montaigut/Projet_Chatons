@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_165943) do
   create_table "join_cart_items", force: :cascade do |t|
     t.bigint "cart_id"
     t.bigint "item_id"
+    t.integer "quantity", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_join_cart_items_on_cart_id"
@@ -62,6 +63,8 @@ ActiveRecord::Schema.define(version: 2020_03_09_165943) do
   end
 
   create_table "join_order_items", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "quantity"
     t.bigint "order_id"
     t.bigint "item_id"
     t.datetime "created_at", null: false
@@ -71,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_165943) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.string "stripe_customer_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

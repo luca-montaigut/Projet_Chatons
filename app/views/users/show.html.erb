@@ -33,7 +33,7 @@
 
     <% current_user.orders.each_with_index do |order, i| %>
 
-      <p> Commande du <%= order.created_at.strftime('%d/%m/%Y à %H:%M') %></p> 
+      <p> Commande du <%= order.created_at.strftime('%d/%m/%Y à %H:%M') %> d'un montant de <%= order.total %>€</p> 
 
       <ul>
       <% order.items.each do |item| %>
