@@ -2,7 +2,7 @@
 
 Voici un recapitulatif de la commande.
 
-<% @order.items do |item| %>
+<% @order.items.each do |item| %>
 - <%= item.title %>
 
 <% end %>
