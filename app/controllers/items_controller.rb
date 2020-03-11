@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.includes(:category).all
+    @categories = Category.all
   end
 
   def show
