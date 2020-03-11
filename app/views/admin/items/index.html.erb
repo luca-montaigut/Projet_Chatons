@@ -12,6 +12,7 @@
   <tbody>
     <% @admin_items.each do |admin_item| %>
       <tr>
+        <td>Ref : <%= admin_item.id %></td>
         <td><%= admin_item.title %></td>
         <td><%= admin_item.price %> €</td>
         <td><%= link_to 'Show', admin_item_path(admin_item) %></td>

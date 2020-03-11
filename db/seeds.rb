@@ -7,10 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+Rating.destroy_all
+Comment.destroy_all
 JoinOrderItem.destroy_all
 JoinCartItem.destroy_all
-Category.destroy_all
 Item.destroy_all
+Category.destroy_all
 Order.destroy_all
 
 3.times do
