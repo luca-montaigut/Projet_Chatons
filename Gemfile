@@ -72,3 +72,4 @@ gem 'faker'
 gem 'dotenv-rails' 
 gem "aws-sdk-s3", require: false
 gem 'stripe'
+gem 'jquery-rails'
