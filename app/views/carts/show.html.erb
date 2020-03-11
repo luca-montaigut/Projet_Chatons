@@ -23,6 +23,7 @@
       </li>
     <% end %>
       <div class="card-footer  text-right">
+      <% if user_signed_in? %>
   <!-- STRIPE -->
         <%= form_tag charges_path do %>
           <article>
@@ -44,7 +45,11 @@
                   data-amount=<%= @cart.total * 100 %>
                   data-locale="auto"></script>
         <% end %>
-  <!-- End of STRIPE -->
+  <!-- End of STRIPE -->        
+      <% else %>
+          <%= link_to "Payer", new_user_session_path, class:"btn btn-outline-primary btn-lg" %> 
+      <% end %>
+
       </div>    
   </ul>
 </div>
