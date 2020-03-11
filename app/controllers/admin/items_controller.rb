@@ -10,6 +10,8 @@ class Admin::ItemsController < Admin::ApplicationController
   # GET /admin/items/1
   # GET /admin/items/1.json
   def show
+    @comment = Comment.new
+    @comments = @admin_item.comments
   end
 
   # GET /admin/items/new

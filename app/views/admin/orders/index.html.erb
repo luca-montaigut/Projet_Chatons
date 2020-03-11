@@ -2,6 +2,11 @@
 
 <h1>Admin Orders</h1>
 
+<%= link_to 'New Admin Order', new_admin_order_path, class:"btn btn-primary" %>
+
+
+<br>
+
 <table>
   <thead>
     <tr>
@@ -12,6 +17,7 @@
   <tbody>
     <% @admin_orders.each do |admin_order| %>
       <tr>
+        <td>Ref : <%= admin_order.id %> </td>
         <td> <%= admin_order.user.first_name + " " + admin_order.user.last_name %> </td>
         <td> Commande réalisée le <%= admin_order.created_at.strftime('%d/%m/%Y à %H:%M') %> </td>
         <td> Montant : <%= admin_order.total  %></td>
@@ -25,4 +31,3 @@
 
 <br>
 
-<%= link_to 'New Admin Order', new_admin_order_path %>

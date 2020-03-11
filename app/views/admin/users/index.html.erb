@@ -12,6 +12,7 @@
   <tbody>
     <% @admin_users.each do |admin_user| %>
       <tr>
+        <td>Ref : <%= admin_user.id %></td>
         <td><%= admin_user.first_name %></td>
         <td><%= admin_user.last_name %></td>
         <td><%= link_to 'Show', admin_user_path(admin_user) %></td>
