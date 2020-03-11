@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  after_create :order_cart
+  after_create :order_cart, :order_mail
 
   belongs_to :user
 
@@ -19,5 +19,9 @@ class Order < ApplicationRecord
     self.user.cart.items.destroy_all
   end
 
+  def order_mail
+	UserMailer.purchase_mail(self).deliver_later
+	AdminMailer.order_mail(self).deliver_later
+  end
 
 end

@@ -1,8 +1,8 @@
 class UserMailer < ApplicationMailer
 
-	def purchase_mail(user)
-		@user = user
-		mail(to: @user.email, subject: 'Vos achats')
+	def purchase_mail(order)
+		@order = order
+		mail(to: @order.user.email, subject: 'Vos achats')
 	end
 
 end

@@ -1,25 +1,155 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Bonjour <%= @user.first_name %> et merci pour vos achats !</h1>
-    <h2>Voici un récapitulatif de vos achats.</h2>
-    <% @user.cart.in_cart.each do |item| %>
-        <div class="row">
-            <div class="col-md-2">
-              <%= image_tag item.picture, width: "150"%>
-            </div>
-            <div class="col-md-9">
-                <%= item.title %><br>
-            </div>
-        </div>
-		<br/>
-    <% end %>
-	<h4>Vous avez payé un total de <%= @user.cart.total %>€</h4>
-    <br />
-    <br />
-    <h3> À très vite sur Cat-Roulette !</h3>
-  </body>
+	<div class="es-wrapper-color">
+        <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="esd-email-paddings" valign="top">
+                        <table cellpadding="0" cellspacing="0" class="es-content esd-header-popover" align="center">
+                            <tbody>
+                                <tr>
+                                    <td class="esd-stripe" align="center" esd-custom-block-id="44757">
+                                        <table bgcolor="#ffffff" class="es-content-body" align="center" cellpadding="0" cellspacing="0" width="600">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="esd-structure es-p20t es-p20r es-p20l" align="left" style="background-position: center top;" esd-custom-block-id="44741">
+                                                        <table cellpadding="0" cellspacing="0" width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="560" class="esd-container-frame" align="center" valign="top">
+                                                                        <table cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="center" class="esd-block-text">
+                                                                                        <h2 style="color: #659c35;">Merci pour votre commande !</h2>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+						<% @user.items do |item| %>
+                        <table cellpadding="0" cellspacing="0" class="es-content" align="center">
+                            <tbody>
+                                <tr>
+                                    <td class="esd-stripe" align="center">
+                                        <table bgcolor="#ffffff" class="es-content-body" align="center" cellpadding="0" cellspacing="0" width="600">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="esd-structure es-p10t es-p10b es-p20r es-p20l" align="left" style="background-position: center top;" esd-custom-block-id="44745">
+                                                        <!--[if mso]><table width="560" cellpadding="0" cellspacing="0"><tr><td width="154" valign="top"><![endif]-->
+                                                        <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="154" class="es-m-p20b esd-container-frame" align="left">
+                                                                        <table cellpadding="0" cellspacing="0" width="100%" style="background-position: left top;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="center" class="esd-block-image" style="font-size:0"><a target="_blank" href="https://viewstripo.email/"><img class="adapt-img" src="<%= item.picture %>" alt style="display: block;" width="154"></a></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table cellpadding="0" cellspacing="0" class="es-right" align="right">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="386" align="left" class="esd-container-frame">
+                                                                        <table cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="left" class="esd-block-text es-p10t es-m-txt-l">
+                                                                                        <h3 style="color: #659c35; font-size: 19px;"><strong><%= item.title %></strong></h3>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="left" class="esd-block-text es-p5t">
+                                                                                        <p><%= item.description %></p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="left" class="esd-block-text es-p10t es-m-txt-l">
+                                                                                        <h3 style="color: #659c35; font-size: 19px;"><strong><span style="color:#000000;">Quantité:</span>&nbsp;<%= item.quantity %></strong></h3>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="left" class="esd-block-text es-p10t es-m-txt-l">
+                                                                                        <h3 style="color: #659c35; font-size: 19px;"><strong><span style="color:#000000;">Prix:</span>&nbsp;<%= item.buying_price %>€</strong></h3>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!--[if mso]></td></tr></table><![endif]-->
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+						<% end %>
+                        <table cellpadding="0" cellspacing="0" class="es-content esd-footer-popover" align="center">
+                            <tbody>
+                                <tr>
+                                    <td class="esd-stripe" align="center">
+                                        <table bgcolor="#ffffff" class="es-content-body" align="center" cellpadding="0" cellspacing="0" width="600">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="esd-structure es-p15t es-p20r es-p20l" align="left" style="background-position: center top;">
+                                                        <table cellpadding="0" cellspacing="0" width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="560" class="esd-container-frame" align="center" valign="top">
+                                                                        <table cellpadding="0" cellspacing="0" width="100%" style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc;background-position: center top;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="left" class="esd-block-text es-p10t">
+                                                                                        <table border="0" cellspacing="1" cellpadding="1" style="width:500px;" class="cke_show_border">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <h4 style="color: #333333; line-height: 200%;">Total de la commande:</h4>
+                                                                                                    </td>
+                                                                                                    <td style="color: #659c35;"><strong><%= order.total %></strong></td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
 </html>

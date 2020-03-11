@@ -1,7 +1,7 @@
 class AdminMailer < ApplicationMailer
 
-	def order_mail(user)
-		@user = user
+	def order_mail(order)
+		@order = order
 	end
 
 end
