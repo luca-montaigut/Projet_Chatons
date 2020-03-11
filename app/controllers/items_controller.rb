@@ -3,9 +3,11 @@ class ItemsController < ApplicationController
     @items = Item.includes(:category).all
     @categories = Category.all
   end
-
+  
   def show
     @item = Item.find(params[:id])
+    @comment = Comment.new
+    @comments = @item.comments
     
     if current_user
       find = Rating.find_by(user_id: current_user.id , item_id: params[:id])
