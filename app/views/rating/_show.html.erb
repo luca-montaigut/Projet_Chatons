@@ -14,7 +14,6 @@
 </div>
 
 <% if user_signed_in?%>
-<% @rate = Rating.find_by(user_id: current_user.id , item_id: params[:id]);%>
   <script>
   $('#star1, #star2, #star3, #star4, #star5').on('click', function () {
     $.ajax({
@@ -28,7 +27,7 @@
     });      $ajax()  
   });
 
-  let rate = <%= @rate.rating%> 
+  let rate = <%= rate%> 
   
   for (let i = 1; i < rate + 1; i++) {
      $(`#star${i}`).prop( "checked", true );
