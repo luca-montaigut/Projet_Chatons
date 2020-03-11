@@ -1,8 +1,8 @@
 <!-- Index -->
 <div id="filter">
-  <%= link_to "All", "#", id:"all", class:"btn btn-warning" %>
+  <p id="all" class="btn btn-warning">All</p>
   <% @categories.each do |category| %>
-    <%= link_to "#{category.name}", "#", id:"#{category.name.split.join.downcase}", class:"btn btn-success" %>
+  <p id=<%= category.name.split.join.downcase %> class="btn btn-success"><%= category.name %></p>
   <% end %>
 <div>
 
@@ -31,22 +31,29 @@
 
 </div>
 
-<!--
+
 <script>
-  let filter = document.getElementById('bombay')
-  let index = document.querySelector('.row')
 
-
-  const filtering = function filteringItemCard(e){
-    e.preventDefault;
+<% @categories.each do |category| %>
+  document.getElementById('<%= category.name.split.join.downcase %>').addEventListener('click', function(e){
+        e.preventDefault;
+        let index = document.querySelector('.row')
     for (let i = 0; i < index.children.length; i++) {
-      if (!index.children[i].firstElementChild.classList.contains('bombay')){
+      if (!index.children[i].firstElementChild.classList.contains('<%= category.name.split.join.downcase %>')){
         index.children[i].style.display = "none"
+      } else {
+        index.children[i].style.display = "flex"
       }
     }
+  });
+<% end %>
 
-  };
+document.getElementById('all').addEventListener('click', function(e){
+      e.preventDefault;
+      let index = document.querySelector('.row')
+  for (let i = 0; i < index.children.length; i++) {
+      index.children[i].style.display = "flex"
+  }
+});
 
-  filter.addEventListener('click', filtering)
 </script>
--->
