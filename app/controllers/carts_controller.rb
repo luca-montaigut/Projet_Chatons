@@ -4,8 +4,15 @@ class CartsController < ApplicationController
   end
 
   def update
-    JoinCartItem.create(cart_id: @cart.id, item_id: Item.find(params[:id]).id, quantity: params[:quantity])
     
+    in_cart = JoinCartItem.find_by(cart_id: @cart.id, item_id: Item.find(params[:id]))
+
+    if in_cart != nil
+      in_cart.update(quantity: in_cart.quantity.to_i + params[:quantity].to_i)  
+    else
+      JoinCartItem.create(cart_id: @cart.id, item_id: Item.find(params[:id]).id, quantity: params[:quantity])
+    end
+
     respond_to do |format|
       format.js  
     end

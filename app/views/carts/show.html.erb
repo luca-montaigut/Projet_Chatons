@@ -37,7 +37,7 @@
               </div>
             <% end %>
             <label class="amount">
-              <h4>Total: <%= @cart.total_value%> €</h4>
+              <h4>Total: <%= @cart.total%> €</h4>
             </label>
           </article>
 
@@ -46,7 +46,7 @@
                   data-description="Payez votre commande"
                   data-email=<%= current_user.email %>
                   data-currency= 'eur',
-                  data-amount=<%=  @cart.total_value * 100 %>
+                  data-amount=<%=  @cart.total * 100 %>
                   data-locale="auto"></script>
         <% end %>
   <!-- End of STRIPE -->        

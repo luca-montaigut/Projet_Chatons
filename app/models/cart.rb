@@ -8,12 +8,7 @@ class Cart < ApplicationRecord
     self.items
   end
 
-  def total_value
-    i = 0
-    self.items.each do |item|
-      i = i + item.join_cart_items.find_by(cart_id: self.id).total
-    end
-    return i
-
+  def total
+    self.join_cart_items.map{ |item| item.total }.sum
   end
 end
