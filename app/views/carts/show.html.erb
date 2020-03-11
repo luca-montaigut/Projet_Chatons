@@ -1,0 +1,55 @@
+<h1>Votre panier</h1>
+<div class="card border-light mb-3 " >
+  <div class="card-header text-white bg-dark">
+    Votre panier:
+  </div>
+  <ul class="list-group list-group-flush border-right-0">
+    <% @cart.in_cart.each do |item| %>
+      <li class="list-group-item">
+        <div class="row">
+            <div class="col-md-2">
+              <%= image_tag item.picture, width: "150"%>
+            </div>
+            <div class="col-md-9">
+                <%= item.title %><br>
+              <strong>
+                <%= item.price %>€
+              </strong>
+            </div>
+            <div class="col-md-1">
+              <%= link_to "<i class='fa fa-trash'></i>".html_safe, cart_path(item), method: "DELETE",class: "btn btn-danger" %>
+            </div>
+        </div>
+      </li>
+    <% end %>
+      <div class="card-footer  text-right">
+      <% if user_signed_in? %>
+  <!-- STRIPE -->
+        <%= form_tag charges_path do %>
+          <article>
+            <% if flash[:error].present? %>
+              <div id="error_explanation">
+                <p><%= flash[:error] %></p>
+              </div>
+            <% end %>
+            <label class="amount">
+              <h4>Total: <%= @cart.total%> €</h4>
+            </label>
+          </article>
+
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                  data-description="Payez votre commande"
+                  data-email=<%= current_user.email %>
+                  data-currency= 'eur',
+                  data-amount=<%= @cart.total * 100 %>
+                  data-locale="auto"></script>
+        <% end %>
+  <!-- End of STRIPE -->        
+      <% else %>
+          <%= link_to "Payer", new_user_session_path, class:"btn btn-outline-primary btn-lg" %> 
+      <% end %>
+
+      </div>    
+  </ul>
+</div>
