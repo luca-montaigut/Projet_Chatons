@@ -1,22 +1,52 @@
 <!-- Index -->
+<div id="filter">
+  <%= link_to "All", "#", id:"all", class:"btn btn-warning" %>
+  <% @categories.each do |category| %>
+    <%= link_to "#{category.name}", "#", id:"#{category.name.split.join.downcase}", class:"btn btn-success" %>
+  <% end %>
+<div>
+
+<br>
+
 <div class="row">
-<% i = 0%>
-<% @items.each do |item|%>
-<div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <%= image_tag item.picture, height: "200px;" %>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <%= link_to item.title, item_path(item)%></a>
-                </h4>
-                <h5><%= item.price%></h5>
-                <p class="card-text"><%= item.description%></p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">★ ★ ★ ★ ☆</small>
-              </div>
-            </div>
-          </div>
-          <% i = i + 1%>
-<%end%>
+
+  <% @items.each do |item|%>
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card h-100 <%= item.category.name.split.join.downcase %>">
+        <%= image_tag item.picture, height: "200px;" %>
+        <div class="card-body">
+          <h4 class="card-title">
+            <%= link_to item.title, item_path(item)%></a>
+          </h4>
+          <h5><%= item.price%></h5>
+          <p class="card-text"><%= item.description%></p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">★ ★ ★ ★ ☆</small>
+          <b><%= item.category.name %></b>
+        </div>
+      </div>
+    </div>
+  <%end%>
+
 </div>
+
+<!--
+<script>
+  let filter = document.getElementById('bombay')
+  let index = document.querySelector('.row')
+
+
+  const filtering = function filteringItemCard(e){
+    e.preventDefault;
+    for (let i = 0; i < index.children.length; i++) {
+      if (!index.children[i].firstElementChild.classList.contains('bombay')){
+        index.children[i].style.display = "none"
+      }
+    }
+
+  };
+
+  filter.addEventListener('click', filtering)
+</script>
+-->

@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+
   validates :title, 
     presence: true,
     length: { in: 3..50 }
@@ -12,7 +13,8 @@ class Item < ApplicationRecord
   validates :picture, 
     presence: true
 
-  
+  belongs_to :category
+
   has_many :join_cart_items
   has_many :carts, through: :join_cart_items
 
