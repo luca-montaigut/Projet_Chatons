@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_165943) do
+ActiveRecord::Schema.define(version: 2020_03_11_090238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_165943) do
   create_table "join_cart_items", force: :cascade do |t|
     t.bigint "cart_id"
     t.bigint "item_id"
+    t.integer "quantity", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_join_cart_items_on_cart_id"
@@ -62,6 +63,8 @@ ActiveRecord::Schema.define(version: 2020_03_09_165943) do
   end
 
   create_table "join_order_items", force: :cascade do |t|
+    t.decimal "buying_price"
+    t.integer "quantity"
     t.bigint "order_id"
     t.bigint "item_id"
     t.datetime "created_at", null: false
@@ -71,10 +74,21 @@ ActiveRecord::Schema.define(version: 2020_03_09_165943) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.string "stripe_customer_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating"
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_ratings_on_item_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -101,4 +115,6 @@ ActiveRecord::Schema.define(version: 2020_03_09_165943) do
   add_foreign_key "join_order_items", "items"
   add_foreign_key "join_order_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "ratings", "items"
+  add_foreign_key "ratings", "users"
 end

@@ -1,26 +1,18 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
   
   def show
   end
 
   def update
-    JoinCartItem.create(cart_id: @cart.id, item_id: Item.find(params[:id]).id)
+    JoinCartItem.create(cart_id: @cart.id, item_id: Item.find(params[:id]).id, quantity: 1)
   end
 
   def destroy
     item = Item.find(params[:id])
-    join = item.join_id(current_user)
-    puts join
-    JoinCartItem.destroy(join.ids)
+    JoinCartItem.find_by(cart_id: @cart.id, item_id: item.id).destroy
   end
 
   private
-
-  def set_cart
-    @cart = current_user.cart
-  end
 
   def cart_params
     params.require(:cart).permit(:user_id, :id)
