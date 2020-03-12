@@ -21,10 +21,48 @@ end
 
 i = 0
 20.times do
-    item = Item.new(title: "Chaton Abyssin de 3 mois", 
-    description: "Chaton Abyssin trop mignon! Les grands yeux et les oreilles remarquables du chat Abyssin en disent long sur le caractère de cette race de chat.  Les Abyssins sont des chats très proches de l'homme et font preuve d’une curiosité exacerbée.", 
-    price: rand(10...500),
+    item = Item.new(title: Faker::Creature::Cat.name, 
+    description: Faker::Lorem.paragraph, 
+    price: rand(10...250),
     category_id: Category.all.sample.id)
     item.picture.attach(io: File.open("db/cat/cat#{i+=1}.jpg"), filename: 'cat.jpg', content_type: 'image/jpeg')
     item.save
+end
+
+10.times do 
+@password = Faker::Stripe.valid_card
+User.create(
+  first_name: Faker::Name.first_name, 
+  last_name: Faker::Name.last_name, 
+  description: Faker::Movie.quote,
+  email: Faker::Internet.email,
+  password: @password,
+  password_confirmation: @password, 
+  adress: Faker::Address.street_address + " " + Faker::Address.zip_code + " " + Faker::Address.city, 
+  birthdate: Faker::Date.birthday(min_age: 18, max_age: 65), 
+  is_admin: false)
+end
+
+50.times do
+    Comment.create(
+        content: Faker::Hacker.say_something_smart,
+        user_id: User.all.sample.id,
+        item_id: Item.all.sample.id
+    )
+end
+
+25.times do
+    Order.create(
+        stripe_customer_id: Faker::Code.imei,
+        user_id: User.all.sample.id
+    )
+end
+
+100.times do
+    JoinOrderItem.create(
+        order_id: Order.all.sample.id,
+        item_id: Item.all.sample.id,
+        buying_price: rand(10...250),
+        quantity: rand(1..5),
+    )
 end
