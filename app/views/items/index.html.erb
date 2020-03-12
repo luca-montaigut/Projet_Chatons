@@ -25,11 +25,15 @@
             <% end %>
             </div>
           </h4>
-          <h5><%= item.price%>€</h5>
+          <h5><%= item.price%>€        
+          <% if item.item_average_rating != nil%>
+          <small class="text-muted"><%= "★" * item.item_average_rating%></small>
+          <% end %>
+          </h5>
           <p class="card-text"><%= item.description%></p>
         </div>
         <div class="card-footer">
-          <small class="text-muted">★ ★ ★ ★ ☆</small>
+
           <b><%= item.category.name %></b>
         </div>
       </div>
