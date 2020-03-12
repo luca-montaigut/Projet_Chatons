@@ -24,7 +24,25 @@ class Item < ApplicationRecord
   has_many :comments
   has_many :users, through: :comments
 
+  has_many :rating
+
   def join_id(user)
     self.join_cart_items.where(cart: user.cart.id)
+  end
+
+  def item_average_rating
+    self.rating.pluck(:rating).sum / self.rating.count
+  end
+
+  def item_star(star = 0)
+    if star == 0
+      self.rating.count
+    else
+      self.rating.where(rating: star).count
+    end
+  end
+
+  def percent(num)
+    self.item_star(num).to_f / self.item_star * 100
   end
 end

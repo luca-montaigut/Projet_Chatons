@@ -24,10 +24,10 @@
 </div>
 <div class="card-footer w-100 text-muted">
 <b><%= @item.category.name %></b>
-    Footer stating cats are CUTE little animals
 </div>
-
-
+</div>
+<%= render 'rating/rating', rate: @rate%>
+<div class=>
 <h2>Commentaires</h2>
 
 <div>
@@ -44,4 +44,3 @@
     <div class="toast-body">
         It's been a long time since you visited us. We've something special for you. <a href="#">Click here!</a>
     </div>
-</div>

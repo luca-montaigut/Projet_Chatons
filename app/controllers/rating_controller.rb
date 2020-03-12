@@ -1,9 +1,6 @@
 class RatingController < ApplicationController
   
-  def show
-   
 
-  end
   def update
     @rating = Rating.new(user_id: current_user.id, 
                          item_id: params[:item_id], 
