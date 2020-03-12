@@ -8,7 +8,7 @@ class Order < ApplicationRecord
   has_many :items, through: :join_order_items
 
   def total
-    self.join_order_items.pluck(:buying_price).sum
+    self.join_order_items.map{ |item| item.total }.sum
   end
 
   private 

@@ -16,7 +16,9 @@
             <h5 class="card-title"><strong><%= @item.price%>€</strong></h5>
             <%= render 'rating/show', rate: @rate%>
             <p class="card-text"><%= @item.description%></p>
-            <%= link_to "<i class='fas fa-shopping-cart'> </i>  Ajouter au panier".html_safe, cart_path, data:{ method: "PUT" }, class:"btn btn-success"%>
+            <div id="btn-cart">
+                <%= render 'add_cart', rate: @rate%>
+            </div>
         </div>
     </div>
 </div>
@@ -31,4 +33,15 @@
 <div>
   <%= render 'comments/index'%>
   <%= render 'comments/new'%>
+</div>
+
+<div class="toast" id="myToast">
+    <div class="toast-header">
+        <strong class="mr-auto"><i class="fa fa-grav"></i> We miss you!</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+    </div>
+    <div class="toast-body">
+        It's been a long time since you visited us. We've something special for you. <a href="#">Click here!</a>
+    </div>
 </div>

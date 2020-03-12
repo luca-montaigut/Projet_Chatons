@@ -2,27 +2,27 @@
 
 <h1>Admin Users</h1>
 
-<table>
+<br>
+<%= link_to 'New Admin User', new_admin_user_path, class: "btn btn-primary" %>
+<br>
+
+<table class="table table-striped">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th scope="col">Id:</th>
+      <th scope="col" >Nom:</th>
+      <th scope="col" >Prenom:</th>
+      <th scope="col" >Action:</th>
     </tr>
   </thead>
-
   <tbody>
     <% @admin_users.each do |admin_user| %>
       <tr>
-        <td>Ref : <%= admin_user.id %></td>
-        <td><%= admin_user.first_name %></td>
+        <td scope="row" width="5%"><%= admin_user.id %></td>
+        <td width="10%"><%= admin_user.first_name %></td>
         <td><%= admin_user.last_name %></td>
-        <td><%= link_to 'Show', admin_user_path(admin_user) %></td>
-        <td><%= link_to 'Edit', edit_admin_user_path(admin_user) %></td>
-        <td><%= link_to 'Destroy', admin_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td width="15%"><%= link_to 'Show', admin_user_path(admin_user) %> <%= link_to 'Edit', edit_admin_user_path(admin_user) %> <%= link_to 'Destroy', admin_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Admin User', new_admin_user_path %>
