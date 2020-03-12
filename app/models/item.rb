@@ -31,7 +31,9 @@ class Item < ApplicationRecord
   end
 
   def item_average_rating
-    self.rating.pluck(:rating).sum / self.rating.count
+    unless self.rating.count == 0
+      self.rating.pluck(:rating).sum / self.rating.count
+    end
   end
 
   def item_star(star = 0)
