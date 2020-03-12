@@ -23,8 +23,8 @@
       method: 'PUT'
 
     }).done(function() {
-      $( this ).addClass( "done" );
-    });      $ajax()  
+
+    });    
   });
 
   let rate = <%= @item.item_average_rating%> 
@@ -32,6 +32,10 @@
   for (let i = 1; i < rate + 1; i++) {
      $(`#star${i}`).prop( "checked", true );
   }
+
+
+
+
   </script>
   <% else %>
   <script>

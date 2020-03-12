@@ -26,7 +26,9 @@
 <b><%= @item.category.name %></b>
 </div>
 </div>
-<%= render 'rating/rating', rate: @rate%>
+<div id="rating">
+<%= render 'rating/rating', item: @item%>
+</div>
 <div class=>
 <h2>Commentaires</h2>
 
