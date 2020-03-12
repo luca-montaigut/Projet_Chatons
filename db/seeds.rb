@@ -30,18 +30,28 @@ i = 0
 end
 
 10.times do 
-@password = Faker::Stripe.valid_card
 User.create(
   first_name: Faker::Name.first_name, 
   last_name: Faker::Name.last_name, 
   description: Faker::Movie.quote,
-  email: Faker::Internet.email,
-  password: @password,
-  password_confirmation: @password, 
+  email: Faker::Name.first_name + "@yopmail.com",
+  password: "123456",
+  password_confirmation: "123456", 
   adress: Faker::Address.street_address + " " + Faker::Address.zip_code + " " + Faker::Address.city, 
   birthdate: Faker::Date.birthday(min_age: 18, max_age: 65), 
   is_admin: false)
 end
+
+User.create(
+  first_name: "Lazy", 
+  last_name: "Rabbit", 
+  description: Faker::Movie.quote,
+  email: "lazyrabbit@yopmail.com",
+  password: "123456",
+  password_confirmation: "123456", 
+  adress: Faker::Address.street_address + " " + Faker::Address.zip_code + " " + Faker::Address.city, 
+  birthdate: Faker::Date.birthday(min_age: 18, max_age: 65), 
+  is_admin: true)
 
 50.times do
     Comment.create(
