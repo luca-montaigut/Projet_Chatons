@@ -61,7 +61,11 @@
 <!-- End of Jumbotron -->
 
 <!-- Start of main-->
+    <% if current_page?(root_path) %>
     <main role="main" class="flex-shrink-0">
+    <% else %>
+    <main role="main" class="flex-shrink-0 mt-5">
+    <% end %>
       <div class="container">
             <%= yield %>
       </div>
@@ -73,7 +77,7 @@
 <footer class="page-footer">
     <div class="container-fluid bg-success py-1 text-center">
 <% else %>
-<footer class="page-footer fixed-bottem">
+<footer class="page-footer fixed-bottom">
     <div class="container-fluid bg-success py-1 text-center fixed-bottem">
 <% end %>
       <p class="mt-2">
