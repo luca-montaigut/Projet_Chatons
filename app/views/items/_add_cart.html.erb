@@ -8,8 +8,6 @@
 
 <% else %>
 <div class="form-inline">
-<p>Nombre d'exemplaire dans votre panier:</p>
-
 <%= form_with method: "PUT", url: cart_path  do |form| %>
   <%= form.number_field :quantity , value: @cart.is_in_cart?(params[:id]).quantity , class:"form-control w-25"%>
   <%= form.submit "Modifier la quantité ".html_safe, class:"btn btn-success "%>

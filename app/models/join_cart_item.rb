@@ -1,5 +1,6 @@
 class JoinCartItem < ApplicationRecord
   before_create :already_exist?
+  after_create :null
 
   belongs_to :cart
   belongs_to :item
@@ -16,5 +17,11 @@ class JoinCartItem < ApplicationRecord
     if find != nil
       find.destroy
     end
+  end
+
+  def null
+    if self.quantity == nil
+      self.update(quantity: 1)
+    end 
   end
 end

@@ -15,10 +15,17 @@
       <div class="card h-100 <%= item.category.name.split.join.downcase %>">
         <%= image_tag item.picture, height: "200px;" %>
         <div class="card-body">
-          <h4 class="card-title">
-            <%= link_to item.title, item_path(item)%></a>
+          
+          <h4 class="card-title d-flex justify-content-between">
+            <%= link_to item.title, item_path(item)%>
+            <div>
+            <% if @cart.is_in_cart?(item.id)%>
+            <% else %>   
+              <%= link_to '<i class="fas fa-cart-arrow-down"></i>'.html_safe, cart_url(item, 1), method: "PUT", remote: true, class: "btn btn-success", id:"go"%></a>
+            <% end %>
+            </div>
           </h4>
-          <h5><%= item.price%></h5>
+          <h5><%= item.price%>€</h5>
           <p class="card-text"><%= item.description%></p>
         </div>
         <div class="card-footer">
@@ -33,6 +40,13 @@
 
 
 <script>
+
+    $('a[id="go"]').click(function() {
+      let text = $("#pill").text()
+      let num = parseInt(text)
+      $(this).hide()
+      $("#pill").html(`${num + 1}`)
+   });
 
 <% @categories.each do |category| %>
   document.getElementById('<%= category.name.split.join.downcase %>').addEventListener('click', function(e){
@@ -55,5 +69,6 @@ document.getElementById('all').addEventListener('click', function(e){
       index.children[i].style.display = "flex"
   }
 });
+
 
 </script>

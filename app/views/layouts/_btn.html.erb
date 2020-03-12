@@ -1,12 +1,12 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "<i class='fas fa-shopping-cart fa-lg '></i> <span class='badge badge-pill badge-success'>#{@cart.items.count}</span>
+              <%= link_to "<i class='fas fa-shopping-cart fa-lg '></i> <span class='badge badge-pill badge-success' id='pill''>#{@cart.items.count}</span>
 ".html_safe, cart_path(current_user.id), class:"nav-link btn btn-outline-dark mr-1"%>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "<i class='fas fa-shopping-cart fa-lg '></i> <span class='badge badge-pill badge-success'>#{@cart.items.count}</span>".html_safe, cart_path(session[:cart]), class:"nav-link btn btn-outline-dark mr-1"%>
+              <%= link_to "<i class='fas fa-shopping-cart fa-lg '></i> <span class='badge badge-pill badge-success' id='pill'>#{@cart.items.count}</span>".html_safe, cart_path(session[:cart]), class:"nav-link btn btn-outline-dark mr-1"%>
             </li>
           <% end %>
         </ul>
