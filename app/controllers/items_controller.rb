@@ -19,4 +19,12 @@ class ItemsController < ApplicationController
       @rate = find.rating
     end
   end
+
+  def destroy
+    item = Item.find(params[:id])
+    JoinCartItem.find_by(cart_id: @cart.id, item_id: item.id).destroy
+    respond_to do |format|
+      format.js  
+    end
+  end
 end

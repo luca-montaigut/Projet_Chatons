@@ -16,7 +16,7 @@
             <h5 class="card-title"><strong><%= @item.price%>€</strong></h5>
             <%= render 'rating/show', rate: @rate%>
             <p class="card-text"><%= @item.description%></p>
-            <div id="btn">
+            <div id="btn-cart">
                 <%= render 'add_cart', rate: @rate%>
             </div>
         </div>

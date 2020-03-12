@@ -22,6 +22,10 @@ class CartsController < ApplicationController
     end
   end
 
+  def is_in_cart?(id)
+    self.join_cart_iems.find_by(cart_id: self.id, item_id: id)
+  end
+
   private
 
   def cart_params
