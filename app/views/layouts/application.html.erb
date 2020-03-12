@@ -45,9 +45,15 @@
 
 <!-- jumbotron -->
     <% if current_page?(root_path) %>
-      <div class="jumbotron">
-        <h1 class="display-4">Cat-roulette</h1>
-        <p class="lead">Les chattes les plus douce de France</p>
+      <div class="jumbotron" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://images.pexels.com/photos/1421082/pexels-photo-1421082.jpeg?cs=srgb&dl=a-fourrure-a-poils-animal-animal-de-compagnie-1421082.jpg&fm=jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      ">
+        <div >
+          <h1 class="display-4 text-white"><strong>Whisker</strong></h1>
+          <p class="lead text-warning"><strong>Photos amateurs et professionnel</strong></p>
+        </div>
       </div>      
     <% end %>
 <!-- End of Jumbotron -->
