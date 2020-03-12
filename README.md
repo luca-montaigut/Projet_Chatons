@@ -1,6 +1,6 @@
 # 🐱 Whiskers
 
-Photos amateurs 
+Photos d'amateurs et de professionnels 
 
 ![Image of site](https://i.imgur.com/mWtKSxf.png)
 
