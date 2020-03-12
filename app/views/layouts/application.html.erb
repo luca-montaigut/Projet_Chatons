@@ -26,28 +26,34 @@
 <!-- Flash -->
     <% flash.each do |key, value| %>
       <% if key == "error" %>
-        <div class="alert alert-light alert-dismissible fade show" role="alert">
+        <div class="alert alert-light alert-dismissible fade show fixed-top" role="alert">
           <%= content_tag :span, value, class: "flash #{key}" %>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
       <% else %>
-        <div class="alert alert-light alert-dismissible fade show" role="alert">
+        <div class="alert alert-light alert-dismissible fade show fixed-top" role="alert">
           <%= content_tag :span, value, class: "flash #{key}" %>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
       <% end %>
-    <% end %>
+     <% end %>
 <!-- End of Flash -->
 
 <!-- jumbotron -->
     <% if current_page?(root_path) %>
-      <div class="jumbotron">
-        <h1 class="display-4">Cat-roulette</h1>
-        <p class="lead">Les chatte les plus douce de france</p>
+      <div class="jumbotron" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://images.pexels.com/photos/1421082/pexels-photo-1421082.jpeg?cs=srgb&dl=a-fourrure-a-poils-animal-animal-de-compagnie-1421082.jpg&fm=jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      ">
+        <div >
+          <h1 class="display-4 text-white"><strong>Whisker</strong></h1>
+          <p class="lead text-warning"><strong>Photos amateurs et professionnel</strong></p>
+        </div>
       </div>      
     <% end %>
 <!-- End of Jumbotron -->
