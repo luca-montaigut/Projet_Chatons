@@ -69,8 +69,13 @@
 <!-- End of main-->
 
 <!-- Start of footer-->
+<% if current_page?(root_path) %>
 <footer class="page-footer">
     <div class="container-fluid bg-success py-1 text-center">
+<% else %>
+<footer class="page-footer fixed-bottem">
+    <div class="container-fluid bg-success py-1 text-center fixed-bottem">
+<% end %>
       <p class="mt-2">
         <i class="far fa-copyright"></i> Fait avec <i class="fas fa-heart"></i> par l'équipage Nantais 
     </div>  
