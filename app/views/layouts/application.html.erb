@@ -15,20 +15,17 @@
 
   <body>
 <!-- Start of nav bar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-success d-flex justify-content-between">
       <%= link_to " Whisker", root_path, class:"navbar-brand" %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <div class="navbar-nav" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "Cart", cart_path(current_user.id), class:"nav-link"%>
+              <%= link_to "<i class='fas fa-shopping-cart'></i>".html_safe, cart_path(current_user.id), class:"nav-link"%>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "Cart", cart_path(session[:cart]), class:"nav-link"%>
+              <%= link_to "<i class='fas fa-shopping-cart'></i>".html_safe, cart_path(session[:cart]), class:"nav-link"%>
             </li>
           <% end %>
         </ul>
