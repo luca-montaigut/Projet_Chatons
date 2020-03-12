@@ -9,7 +9,7 @@
               <h4>Total: <%= @cart.total%> €</h4>
             </label>
           </article>
-
+          <% if @cart.total > 0%>
           <script src='https://checkout.stripe.com/checkout.js' class='stripe-button'
                   data-key='<%= Rails.configuration.stripe[:publishable_key] %>'
                   data-description='Payez votre commande'
@@ -17,4 +17,5 @@
                   data-currency= 'eur',
                   data-amount=<%=  @cart.total * 100 %>
                   data-locale='auto'></script>
+          <% end %>
         <% end %>
