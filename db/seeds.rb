@@ -77,3 +77,11 @@ end
         quantity: rand(1..5),
     )
 end
+
+50.times do
+    Rating.create(
+        user_id: User.all.sample.id,
+        item_id: Item.all.sample.id,
+        rating: rand(1...5)
+    )
+end
