@@ -82,6 +82,14 @@ end
     Rating.create(
         user_id: User.all.sample.id,
         item_id: Item.all.sample.id,
-        rating: rand(1...5)
+        rating: rand(3..5)
+    )
+end
+
+10.times do
+    Rating.create(
+        user_id: User.all.sample.id,
+        item_id: Item.all.sample.id,
+        rating: rand(1..2)
     )
 end
