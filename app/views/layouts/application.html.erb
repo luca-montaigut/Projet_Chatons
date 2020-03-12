@@ -15,7 +15,7 @@
 
   <body>
 <!-- Start of nav bar-->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark d-flex justify-content-between">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark d-flex justify-content-between fixed-top">
       <%= link_to " Whisker", root_path, class:"navbar-brand" %>
       <div class="navbar-nav" id="navbarTogglerDemo02">
         <%= render  'layouts/btn'%>
@@ -47,7 +47,7 @@
 
 <!-- jumbotron -->
     <% if current_page?(root_path) %>
-      <div class="jumbotron" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://images.pexels.com/photos/1421082/pexels-photo-1421082.jpeg?cs=srgb&dl=a-fourrure-a-poils-animal-animal-de-compagnie-1421082.jpg&fm=jpg);
+      <div class="jumbotron mt-5" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://images.pexels.com/photos/1421082/pexels-photo-1421082.jpeg?cs=srgb&dl=a-fourrure-a-poils-animal-animal-de-compagnie-1421082.jpg&fm=jpg);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -69,6 +69,16 @@
 <!-- End of main-->
 
 <!-- Start of footer-->
+<footer class="page-footer">
+    <div class="container-fluid bg-success py-1 text-center">
+      <p class="mt-2">
+        <i class="far fa-copyright"></i> Fait avec <i class="fas fa-heart"></i> par l'équiapge Nantais 
+    </div>  
+    <div class="container-fluid bg-dark py-1">
+      <div class="container text-center text-white">
+      </div>
+    </div>
+  </footer>
 <!-- End of footer-->
 
   </body>
