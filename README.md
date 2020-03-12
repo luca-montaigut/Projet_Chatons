@@ -8,7 +8,7 @@ Photos d'amateurs et de professionnels
 
 ### Compte Administrateur
 Connectez-vous avec :
-login : lazyrabbit@yopmail.com
+login : lazyrabbit@yopmail.com |
 password : 123456
 
 
@@ -45,7 +45,7 @@ http://localhost:3000/
 
 ### (Rappel) Compte Administrateur
 Connectez-vous avec :
-login : lazyrabbit@yopmail.com
+login : lazyrabbit@yopmail.com |
 password : 123456
 
 Bonne visite !
