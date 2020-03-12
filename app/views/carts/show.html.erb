@@ -8,16 +8,16 @@
       <li class="list-group-item" id="<%= item.id%>">
         <div class="row">
             <div class="col-md-2">
-              <%= image_tag item.picture, width: "150"%>
+              <%= image_tag item.picture, width: "150" %>
             </div>
             <div class="col-md-9">
-                <%= item.title %><br>
+                <%= link_to item.title, item_path(item), style:"font-size: 1.5em;" %><br>
               <strong>
                 <%= item.price %>€
               </strong>
               <br>
               <strong>
-                Quantité: <%= item.join_cart_items.find_by(cart_id: current_user.cart.id).quantity%> X 
+                Quantité: <%= item.quantity(@cart.id)%> X 
               </strong>
             </div>
             <div class="col-md-1">

@@ -30,6 +30,10 @@ class Item < ApplicationRecord
     self.join_cart_items.where(cart: user.cart.id)
   end
 
+  def quantity(id)
+    self.join_cart_items.find_by(cart_id:id).quantity
+  end
+  
   def item_average_rating
     unless self.rating.count == 0
       self.rating.pluck(:rating).sum / self.rating.count
