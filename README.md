@@ -52,8 +52,11 @@ Bonne visite !
 
 ## 🐰 Auteurs
 Luca Montaigut : https://github.com/luca-montaigut
+
 Marius Le Houezec Lacaze : https://github.com/MariusLHL
+
 Baptiste Igier : https://github.com/BaptisteIg
+
 Thibault Perchicot : https://github.com/Azaeps
 
 
