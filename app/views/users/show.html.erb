@@ -1,46 +1,63 @@
-<main class="container">
 
-    <h1 class="text-center"> Profil sur votre profil <%=@user.first_name%> <%=@user.last_name%></h1>
-    <div class="d-flex flex-row my-5">
-        <div class="mx-3">
-        <%# <%if @user.avatar.attached?%> 
-        <%#     <%= image_tag @user.avatar.variant(resize: '200x200'), alt: 'avatar' %>
-        <%#  <%else%>
-        <%#     <%= image_tag("default.jpg")%>
-        <%#  <%end%> 
-        </div>
-
-
-        <div class="mx-3">
-        <p><strong>First name : </strong><%= @user.first_name %></p>
-        <p><strong>Last name : </strong><%= @user.last_name %></p>
-        <p><strong>Email : </strong><%= @user.email %></p>
-        <p><strong>Birthdate : </strong><%= @user.birthdate %></p>
-        <p><strong>Adresse : </strong><%= @user.adress %></p>
-        <p><strong>Description : </strong><%= @user.description %></p>
+  
+  <h1 class="text-center mt-4"> Profil sur votre profil <%=@user.first_name%> <%=@user.last_name%></h1>
+  
+  
+<div class="d-flex justify-content-center mt-5">
+        <div class="card w-50">
+          <div class="card-body">
+            <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
+            <p class="card-text"><%= @user.description %></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= @user.email %></li>
+            <li class="list-group-item"><%= @user.birthdate %></li>
+            <li class="list-group-item"><%= @user.adress %></li>
+          </ul>
+          <div class="card-body text-center">
+            <%if current_user.id == @user.id %>
+              <%= link_to 'Editer le compte', edit_user_registration_path, class:"btn btn-outline-success" %> |
+              <%= link_to 'Editer le profil', edit_user_path, class:"btn btn-success" %>
+            <% end %>
+          </div>
         </div>
     </div>
 
-    <div class="text-center">
-    <%if current_user.id == @user.id %>
-        <%= link_to 'Editer le compte', edit_user_registration_path, class:"btn btn-outline-success" %> |
-        <%= link_to 'Editer le profil', edit_user_path, class:"btn btn-success" %> |
-        <%= link_to '« Retour Accueil', root_path, class:"btn btn-primary" %>
-    <% end %>
+    <div class="text-center mt-3">
+        <%= link_to '« Retour Accueil', root_path, class:"btn btn-warning" %>
     </div>
-<br>
-<h2> Historique de vos commandes </h2>
-
+  <br>
+  <div class="my-5">
+    <h2 > Historique de vos commandes </h2><br>
+    
     <% current_user.orders.each_with_index do |order, i| %>
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <b> Commande du <%= order.created_at.strftime('%d/%m/%Y à %H:%M') %> d'un montant de <%= order.total %>€</b> 
+              </button>
+            </h2>
+          </div>
+      
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <p> Contenu : </p>
+              <ul>
+              <% order.items.each do |item| %>
+                <li class="d-flex justify-content-between">
+                  <%= item.title %> 
+                  <%= link_to "Voir l'article", item_path(item.id) %>
+                </li> 
+              <% end %>
+              </ul>
+        
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <b> Commande du <%= order.created_at.strftime('%d/%m/%Y à %H:%M') %> d'un montant de <%= order.total %>€</b> 
-      <p> Contenu : </p>
-      <ul>
-      <% order.items.each do |item| %>
-        <li><%= item.title %></li> 
-      <% end %>
-      </ul>
 
-    <% end %>
-
-</main>
+  </div>
