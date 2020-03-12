@@ -5,7 +5,9 @@ class CartsController < ApplicationController
 
   def update
     
-    JoinCartItem.create(cart_id: @cart.id, item_id: Item.find(params[:id]).id, quantity: params[:quantity])
+    JoinCartItem.create(cart_id: @cart.id, 
+                        item_id: Item.find(params[:id]).id, 
+                        quantity: params[:quantity])
 
     respond_to do |format|
       format.js  
