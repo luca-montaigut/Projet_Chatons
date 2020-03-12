@@ -1,35 +1,36 @@
-<main class="container">
 
-    <h1 class="text-center"> Profil sur votre profil <%=@user.first_name%> <%=@user.last_name%></h1>
-    <div class="d-flex flex-row my-5">
-        <div class="mx-3">
-        <%# <%if @user.avatar.attached?%> 
-        <%#     <%= image_tag @user.avatar.variant(resize: '200x200'), alt: 'avatar' %>
-        <%#  <%else%>
-        <%#     <%= image_tag("default.jpg")%>
-        <%#  <%end%> 
-        </div>
+  
+  <h1 class="text-center"> Profil sur votre profil <%=@user.first_name%> <%=@user.last_name%></h1>
+  
+  
+<div class="d-flex justify-content-center">
 
-
-        <div class="mx-3">
-        <p><strong>First name : </strong><%= @user.first_name %></p>
-        <p><strong>Last name : </strong><%= @user.last_name %></p>
-        <p><strong>Email : </strong><%= @user.email %></p>
-        <p><strong>Birthdate : </strong><%= @user.birthdate %></p>
-        <p><strong>Adresse : </strong><%= @user.adress %></p>
-        <p><strong>Description : </strong><%= @user.description %></p>
+        <div class="card w-50">
+          <img src="https://images.pexels.com/photos/3905907/pexels-photo-3905907.jpeg?cs=srgb&dl=personne-femme-coeur-main-3905907.jpg&fm=jpg" class="card-img-top" alt="Photo de profil">
+          <div class="card-body">
+            <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
+            <p class="card-text"><%= @user.description %></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= @user.email %></li>
+            <li class="list-group-item"><%= @user.birthdate %></li>
+            <li class="list-group-item"><%= @user.adress %></li>
+          </ul>
+          <div class="card-body text-center">
+            <%if current_user.id == @user.id %>
+              <%= link_to 'Editer le compte', edit_user_registration_path, class:"btn btn-outline-success" %> |
+              <%= link_to 'Editer le profil', edit_user_path, class:"btn btn-success" %>
+            <% end %>
+          </div>
         </div>
     </div>
 
-    <div class="text-center">
-    <%if current_user.id == @user.id %>
-        <%= link_to 'Editer le compte', edit_user_registration_path, class:"btn btn-outline-success" %> |
-        <%= link_to 'Editer le profil', edit_user_path, class:"btn btn-success" %> |
-        <%= link_to '« Retour Accueil', root_path, class:"btn btn-primary" %>
-    <% end %>
+    <div class="text-center mt-3">
+        <%= link_to '« Retour Accueil', root_path, class:"btn btn-warning" %>
     </div>
-<br>
-<h2> Historique de vos commandes </h2>
+  <br>
+  <div class="mt-5">
+    <h2> Historique de vos commandes </h2>
 
     <% current_user.orders.each_with_index do |order, i| %>
 
@@ -42,5 +43,4 @@
       </ul>
 
     <% end %>
-
-</main>
+  </div>
