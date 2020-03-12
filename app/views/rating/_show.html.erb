@@ -27,7 +27,7 @@
     });      $ajax()  
   });
 
-  let rate = <%= rate%> 
+  let rate = <%= @item.item_average_rating%> 
   
   for (let i = 1; i < rate + 1; i++) {
      $(`#star${i}`).prop( "checked", true );
@@ -35,8 +35,15 @@
   </script>
   <% else %>
   <script>
-  for (let i = 1; i < 6 ; i++) {
-     $(`#star${i}`).prop('checked', false);
-  }
+    let rate = <%= @item.item_average_rating%> 
+  
+    for (let i = 1; i < rate + 1; i++) {
+      $(`#star${i}`).prop( "checked", true );
+    }
+      
+    $('#star1, #star2, #star3, #star4, #star5').on('click', function () {
+      window.location.href = "<%= new_user_session_url %>";
+    })
+    
   </script>
   <% end %>
