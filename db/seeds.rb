@@ -14,6 +14,7 @@ JoinCartItem.destroy_all
 Item.destroy_all
 Category.destroy_all
 Order.destroy_all
+User.destroy_all
 
 3.times do
     Category.create(name: Faker::Creature::Cat.breed)
